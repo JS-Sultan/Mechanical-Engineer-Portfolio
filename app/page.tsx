@@ -1,5 +1,4 @@
-import ThemeToggle from "@/components/ThemeToggle";
-import { education, experience, expertise, internships, nav, profile, skills, stats } from "@/data/profile";
+import { education, experience, expertise, internships, profile, skills, stats } from "@/data/profile";
 
 function SectionHead({ no, title, kicker }: { no: string; title: string; kicker?: string }) {
   return (
@@ -14,37 +13,8 @@ function SectionHead({ no, title, kicker }: { no: string; title: string; kicker?
 export default function Home() {
   return (
     <>
-      <a className="skip" href="#main">
-        Skip to content
-      </a>
-
-      <header className="topbar">
-        <div className="wrap topbar-inner">
-          <a href="#top" className="brand" aria-label={`${profile.name} — home`}>
-            <span className="brand-mark">{profile.initials}</span>
-            <span className="brand-name">{profile.name}</span>
-          </a>
-          <nav aria-label="Primary">
-            <ul className="nav">
-              {nav.map((n) => (
-                <li key={n.href}>
-                  <a href={n.href}>{n.label}</a>
-                </li>
-              ))}
-              <li>
-                <a href={profile.resume} className="nav-cv">
-                  CV
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <ThemeToggle />
-        </div>
-      </header>
-
-      <main id="main">
         {/* ── Hero ─────────────────────────────── */}
-        <section id="top" className="hero">
+        <section className="hero">
           <div className="wrap hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">
@@ -297,16 +267,6 @@ export default function Home() {
             </ul>
           </div>
         </section>
-      </main>
-
-      <footer className="footer">
-        <div className="wrap footer-inner">
-          <span>
-            © {new Date().getFullYear()} {profile.name}
-          </span>
-          <a href="#top">Back to top ↑</a>
-        </div>
-      </footer>
     </>
   );
 }

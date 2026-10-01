@@ -162,11 +162,39 @@ export const skills = [
   { group: "Software & Other", items: ["MS Office", "Teaching & Training", "Project Supervision", "Workforce Training"] },
 ];
 
+// Links starting with "/#" jump to a section on the home page; the others are separate pages.
 export const nav = [
-  { href: "#about", label: "About" },
-  { href: "#expertise", label: "Expertise" },
-  { href: "#experience", label: "Experience" },
-  { href: "#fieldwork", label: "Field Work" },
-  { href: "#skills", label: "Skills" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#skills", label: "Skills" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/interests/", label: "Interests" },
+  { href: "/videos/", label: "Videos" },
+  { href: "/#contact", label: "Contact" },
 ];
+
+// Placeholder pages. When material is ready, replace the page's <ComingSoon /> with real content.
+export const upcoming = {
+  projects: {
+    no: "P-01",
+    title: "Projects",
+    seoTitle: "Projects",
+    description:
+      "Mechanical design, production and quality-improvement projects by Muhammad Ali — CAD models, process improvements and student design work.",
+    message: "Design work, CAD models and process-improvement case studies are being documented.",
+  },
+  interests: {
+    no: "P-02",
+    title: "Hobbies & Interests",
+    seoTitle: "Hobbies & Interests",
+    description: "Hobbies and interests of Muhammad Ali, Mechanical Engineer, beyond the shop floor and the classroom.",
+    message: "A look at life beyond the shop floor and the classroom is on its way.",
+  },
+  videos: {
+    no: "P-03",
+    title: "Videos",
+    seoTitle: "Videos",
+    description: "Videos by Muhammad Ali — engineering explainers, CAD walkthroughs and talks.",
+    message: "Engineering explainers, CAD walkthroughs and talks are being recorded.",
+  },
+};
