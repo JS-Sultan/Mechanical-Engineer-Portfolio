@@ -12,7 +12,14 @@ export const profile = {
   email: "engineerali658@gmail.com",
   phone: "+92 313 4390156",
   linkedin: "https://www.linkedin.com/in/muhammad-ali1988",
+  whatsapp: "https://wa.me/923134390156",
+  maps: "https://www.google.com/maps/search/?api=1&query=Lahore%2C%20Pakistan",
   resume: `${basePath}/Muhammad-Ali-Resume.pdf`,
+  portrait: {
+    src: `${basePath}/portrait.webp`, // 800×800
+    small: `${basePath}/portrait-sm.webp`, // 400×400
+    og: "/portrait-og.jpg", // social-share image, resolved against the site URL
+  },
   summary: [
     "Muhammad Ali is a Mechanical Engineer with a Master's in Power Engineering & Engineering Thermophysics from Xi'an Jiaotong University and more than seven years of combined experience across industrial production supervision, quality control, and engineering education.",
     "His work spans four countries — the Netherlands, Bahrain, China, and Pakistan — where he has supervised production operations, enforced quality and safety standards, and improved process efficiency. He designs with AutoCAD, SolidWorks, and Autodesk Inventor, and has trained the next generation of technologists through hands-on, project-based teaching.",

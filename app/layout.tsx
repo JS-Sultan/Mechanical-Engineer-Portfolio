@@ -45,8 +45,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     firstName: "Muhammad",
     lastName: "Ali",
+    images: [{ url: profile.portrait.og, width: 800, height: 800, alt: `Portrait of ${profile.name}` }],
   },
-  twitter: { card: "summary", title: `${profile.name} | ${profile.title}`, description },
+  twitter: { card: "summary", title: `${profile.name} | ${profile.title}`, description, images: [profile.portrait.og] },
   robots: { index: true, follow: true },
 };
 
@@ -67,6 +68,7 @@ const jsonLd = {
   jobTitle: profile.title,
   description,
   url: siteUrl,
+  image: `${siteUrl}${profile.portrait.og}`,
   email: `mailto:${profile.email}`,
   telephone: profile.phone,
   address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },

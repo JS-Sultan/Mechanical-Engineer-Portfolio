@@ -476,6 +476,72 @@ nav {
     padding: 88px 0 56px;
   }
 }
+.hero-id {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 14px 22px;
+}
+.portrait {
+  position: relative;
+  margin: 0;
+  width: 184px;
+  animation: rise 0.6s ease-out both;
+}
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 var(--accent-soft);
+  background: var(--bg-alt);
+}
+/* drafting corner marks */
+.portrait::before,
+.portrait::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+}
+.portrait::before {
+  top: -7px;
+  left: -7px;
+  border-right: 0;
+  border-bottom: 0;
+}
+.portrait::after {
+  top: calc(184px - 11px);
+  right: -7px;
+  border-left: 0;
+  border-top: 0;
+}
+.portrait figcaption {
+  margin-top: 10px;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.hero-id .eyebrow {
+  margin-bottom: 30px;
+}
+@media (max-width: 720px) {
+  .portrait {
+    width: 136px;
+  }
+  .portrait::after {
+    top: calc(136px - 11px);
+  }
+  .hero-id .eyebrow {
+    margin-bottom: 0;
+  }
+}
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -551,49 +617,125 @@ nav {
   position: relative;
   display: grid;
   place-items: center;
-  padding: 24px;
+  padding: 16px;
   border-bottom: 1.5px solid var(--ink);
   background-image: radial-gradient(var(--grid) 1.2px, transparent 1.2px);
   background-size: 12px 12px;
-}
-.gear {
-  width: min(220px, 60vw);
-  height: auto;
-  animation: spin 60s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .gear {
-    animation: none;
-  }
 }
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
-.gear-ring {
-  fill: none;
-  stroke: var(--ink);
-  stroke-width: 3;
+
+/* Hero mechanism (components/HeroMechanism.tsx) */
+.mech {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  overflow: visible;
+  cursor: default;
 }
-.gear-ring.thin {
+.mech-tooth {
+  fill: var(--surface);
+  stroke: var(--ink);
+  stroke-width: 2.2;
+}
+.mech-ring {
+  fill: var(--surface);
+  stroke: var(--ink);
+  stroke-width: 2.6;
+}
+.mech-ring.thin {
+  fill: none;
   stroke-width: 1;
   stroke-dasharray: 4 4;
 }
-.gear-tooth {
-  fill: var(--surface);
+.mech-bolt {
+  fill: var(--bg);
   stroke: var(--ink);
-  stroke-width: 2.5;
+  stroke-width: 1.4;
 }
-.crosshair {
+.mech-spoke {
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+.mech-centre {
+  fill: none;
   stroke: var(--accent);
-  stroke-width: 1.5;
-  stroke-dasharray: 6 4;
+  stroke-width: 1;
+  stroke-dasharray: 14 3 2 3; /* dash-dot centre line */
 }
-.tb-initials {
-  position: absolute;
-  font: 700 2.2rem var(--font-display), sans-serif;
+.mech-cylinder path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.6;
+  stroke-linejoin: round;
+}
+.mech-cylinder .mech-hatch {
+  stroke-width: 1;
+  stroke: var(--ink-soft);
+}
+.mech-rod {
+  stroke: var(--ink);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.mech-pin {
+  fill: var(--accent);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.mech-piston {
+  fill: var(--accent-soft);
+  stroke: var(--ink);
+  stroke-width: 2.4;
+}
+.mech-rings {
+  stroke: var(--ink);
+  stroke-width: 1;
+}
+.mech-initials {
+  font: 700 30px var(--font-display), sans-serif;
   letter-spacing: -0.02em;
+  fill: var(--ink);
+}
+.mech-note text {
+  font: 500 9.5px var(--font-mono), monospace;
+  fill: var(--ink-soft);
+  letter-spacing: 0.04em;
+}
+.mech-note tspan {
+  fill: var(--accent);
+}
+/* drafting lines draw in, notes fade in */
+.mech-draw path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: mech-draft 1.6s ease-out 0.3s forwards;
+}
+.mech-fade {
+  opacity: 0;
+  animation: fade 0.8s ease-out 1.2s forwards;
+}
+@keyframes mech-draft {
+  to {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 14 3 2 3;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mech-draw path {
+    animation: none;
+    stroke-dashoffset: 0;
+    stroke-dasharray: 14 3 2 3;
+  }
+  .mech-fade {
+    animation: none;
+    opacity: 1;
+  }
 }
 .tb-table {
   display: grid;
@@ -963,29 +1105,79 @@ nav {
 }
 .contact-list {
   display: grid;
-  gap: 1px;
+  gap: 12px;
   margin-top: 32px;
-  border-top: 1px solid color-mix(in srgb, var(--bg) 25%, transparent);
 }
 @media (min-width: 720px) {
   .contact-list {
     grid-template-columns: 1fr 1fr;
-    column-gap: 32px;
+    gap: 16px;
   }
 }
 .contact-list li {
+  min-width: 0;
+}
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+}
+.contact-item:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--bg) 6%, transparent);
+  transform: translateY(-2px);
+}
+.contact-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+.contact-text {
   display: grid;
   gap: 2px;
-  padding: 16px 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--bg) 25%, transparent);
   min-width: 0;
-  overflow-wrap: anywhere;
 }
-.contact-list a {
-  font-size: 1.1rem;
+.contact-value {
+  font-size: 1.05rem;
   font-weight: 500;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 4px;
+  overflow-wrap: break-word;
+}
+@media (max-width: 480px) {
+  .contact-item {
+    gap: 12px;
+    padding: 12px;
+  }
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .contact-value {
+    font-size: 0.95rem;
+  }
+  .contact-arrow {
+    display: none;
+  }
+}
+.contact-arrow {
+  margin-left: auto;
+  padding-left: 8px;
+  color: color-mix(in srgb, var(--bg) 45%, transparent);
+  transition: color 0.15s, transform 0.15s;
+}
+.contact-item:hover .contact-arrow {
+  color: var(--accent);
+  transform: translate(2px, -2px);
 }
 
 /* Footer */

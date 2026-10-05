@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { GmailIcon, LinkedInIcon, LocationIcon, WhatsAppIcon } from "@/components/ContactIcons";
+import HeroMechanism from "@/components/HeroMechanism";
 import { education, experience, expertise, internships, profile, skills, stats } from "@/data/profile";
 
 function SectionHead({ no, title, kicker }: { no: string; title: string; kicker?: string }) {
@@ -18,9 +20,23 @@ export default function Home() {
         <section className="hero">
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <p className="eyebrow">
-                <span className="dot" aria-hidden="true" /> {profile.location} · Open to opportunities
-              </p>
+              <div className="hero-id">
+                <figure className="portrait">
+                  <img
+                    src={profile.portrait.src}
+                    srcSet={`${profile.portrait.small} 400w, ${profile.portrait.src} 800w`}
+                    sizes="(min-width: 720px) 184px, 136px"
+                    width={800}
+                    height={800}
+                    alt={`Portrait of ${profile.name}`}
+                    fetchPriority="high"
+                  />
+                  <figcaption className="meta">Fig. 1 · {profile.name}</figcaption>
+                </figure>
+                <p className="eyebrow">
+                  <span className="dot" aria-hidden="true" /> {profile.location} · Open to opportunities
+                </p>
+              </div>
               <h1>
                 {profile.name}
                 <span className="h1-sub">{profile.title}</span>
@@ -44,25 +60,8 @@ export default function Home() {
 
             {/* Drawing-style title block */}
             <aside className="title-block" aria-label="Profile summary">
-              <div className="tb-figure" aria-hidden="true">
-                <svg viewBox="0 0 200 200" className="gear">
-                  <circle cx="100" cy="100" r="62" className="gear-ring" />
-                  <circle cx="100" cy="100" r="40" className="gear-ring thin" />
-                  {Array.from({ length: 12 }).map((_, i) => (
-                    <rect
-                      key={i}
-                      x="93"
-                      y="22"
-                      width="14"
-                      height="20"
-                      rx="2"
-                      className="gear-tooth"
-                      transform={`rotate(${i * 30} 100 100)`}
-                    />
-                  ))}
-                  <path d="M100 8v30M100 162v30M8 100h30M162 100h30" className="crosshair" />
-                </svg>
-                <span className="tb-initials">{profile.initials}</span>
+              <div className="tb-figure">
+                <HeroMechanism initials={profile.initials} />
               </div>
               <dl className="tb-table">
                 <div>
@@ -257,24 +256,43 @@ export default function Home() {
               Looking for a production, quality or design engineer for a multinational team? I'd be glad to talk.
             </p>
             <ul className="contact-list">
-              <li>
-                <span className="meta">Email</span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              </li>
-              <li>
-                <span className="meta">Phone</span>
-                <a href={`tel:${profile.phone.replace(/\s/g, "")}`}>{profile.phone}</a>
-              </li>
-              <li>
-                <span className="meta">LinkedIn</span>
-                <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/muhammad-ali1988
-                </a>
-              </li>
-              <li>
-                <span className="meta">Location</span>
-                <span>{profile.location}</span>
-              </li>
+              {[
+                { label: "Email", value: profile.email, href: `mailto:${profile.email}`, Icon: GmailIcon },
+                { label: "WhatsApp", value: profile.phone, href: profile.whatsapp, Icon: WhatsAppIcon, external: true },
+                {
+                  label: "LinkedIn",
+                  value: (
+                    <>
+                      linkedin.com/in/
+                      <wbr />
+                      muhammad-ali1988
+                    </>
+                  ),
+                  href: profile.linkedin,
+                  Icon: LinkedInIcon,
+                  external: true,
+                },
+                { label: "Location", value: profile.location, href: profile.maps, Icon: LocationIcon, external: true },
+              ].map(({ label, value, href, Icon, external }) => (
+                <li key={label}>
+                  <a
+                    className="contact-item"
+                    href={href}
+                    {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+                  >
+                    <span className="contact-icon">
+                      <Icon size={26} />
+                    </span>
+                    <span className="contact-text">
+                      <span className="meta">{label}</span>
+                      <span className="contact-value">{value}</span>
+                    </span>
+                    <span className="contact-arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </section>
