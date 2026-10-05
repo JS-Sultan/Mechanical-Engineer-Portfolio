@@ -18,7 +18,7 @@ export default function JourneysPage() {
   const cards = journeys.map(({ groups, story, links, ...card }) => ({ ...card, media: mediaSummary({ groups }) }));
 
   return (
-    <div className="page">
+    <div className="page" data-section="journeys">
       <div className="wrap">
         <header className="page-head">
           <p className="section-no">J-00</p>

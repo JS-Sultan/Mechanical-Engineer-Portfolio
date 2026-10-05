@@ -47,7 +47,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
   };
 
   return (
-    <div className="page">
+    <div className="page" data-section="journeys" data-journey-tag={j.tag.toLowerCase()}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="wrap">
         <nav aria-label="Breadcrumb" className="crumbs">

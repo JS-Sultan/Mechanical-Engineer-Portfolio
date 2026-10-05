@@ -31,7 +31,7 @@ const jsonLd = {
 
 export default function VideosPage() {
   return (
-    <div className="page">
+    <div className="page" data-section="videos">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="wrap">
         <header className="page-head">

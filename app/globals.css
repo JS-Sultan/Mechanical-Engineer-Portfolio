@@ -1,15 +1,17 @@
-/* ───────── Tokens: "drafting paper" (light) / "blueprint" (dark) ───────── */
+/* ───────── Tokens: "drafting paper" (light) / "blueprint" (dark) ─────────
+   Sections re-theme the site by setting --sec-* (light) and --sec-*-dark values
+   in the "Section themes" block below; anything they leave unset falls back here. */
 :root {
-  --bg: #f3efe6;
-  --bg-alt: #ebe5d8;
-  --surface: #fbf9f4;
+  --bg: var(--sec-bg, #f3efe6);
+  --bg-alt: var(--sec-bg-alt, #ebe5d8);
+  --surface: var(--sec-surface, #fbf9f4);
   --ink: #1b2533;
   --ink-soft: #4a5566;
-  --line: #d6cdbb;
-  --grid: rgba(27, 37, 51, 0.055);
-  --accent: #d9480f;
+  --line: var(--sec-line, #d6cdbb);
+  --grid: var(--sec-grid, rgba(27, 37, 51, 0.055));
+  --accent: var(--sec-accent, #d9480f);
   --accent-ink: #ffffff;
-  --accent-soft: rgba(217, 72, 15, 0.1);
+  --accent-soft: color-mix(in srgb, var(--accent) 11%, transparent);
   --blue: #1d5f8a;
   --blue-soft: rgba(29, 95, 138, 0.1);
   --shadow: 0 1px 0 rgba(27, 37, 51, 0.04), 0 8px 24px -12px rgba(27, 37, 51, 0.18);
@@ -20,16 +22,16 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0d2238;
-    --bg-alt: #0a1c2f;
-    --surface: #12304d;
+    --bg: var(--sec-bg-dark, #0d2238);
+    --bg-alt: var(--sec-bg-alt-dark, #0a1c2f);
+    --surface: var(--sec-surface-dark, #12304d);
     --ink: #e8eef5;
     --ink-soft: #a9bccf;
-    --line: #2a4a6b;
-    --grid: rgba(173, 205, 235, 0.07);
-    --accent: #ff8a3d;
-    --accent-ink: #0d2238;
-    --accent-soft: rgba(255, 138, 61, 0.14);
+    --line: var(--sec-line-dark, #2a4a6b);
+    --grid: var(--sec-grid-dark, rgba(173, 205, 235, 0.07));
+    --accent: var(--sec-accent-dark, #ff8a3d);
+    --accent-ink: var(--bg);
+    --accent-soft: color-mix(in srgb, var(--accent) 15%, transparent);
     --blue: #7cc0ef;
     --blue-soft: rgba(124, 192, 239, 0.12);
     --shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
@@ -37,20 +39,170 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0d2238;
-  --bg-alt: #0a1c2f;
-  --surface: #12304d;
+  --bg: var(--sec-bg-dark, #0d2238);
+  --bg-alt: var(--sec-bg-alt-dark, #0a1c2f);
+  --surface: var(--sec-surface-dark, #12304d);
   --ink: #e8eef5;
   --ink-soft: #a9bccf;
-  --line: #2a4a6b;
-  --grid: rgba(173, 205, 235, 0.07);
-  --accent: #ff8a3d;
-  --accent-ink: #0d2238;
-  --accent-soft: rgba(255, 138, 61, 0.14);
+  --line: var(--sec-line-dark, #2a4a6b);
+  --grid: var(--sec-grid-dark, rgba(173, 205, 235, 0.07));
+  --accent: var(--sec-accent-dark, #ff8a3d);
+  --accent-ink: var(--bg);
+  --accent-soft: color-mix(in srgb, var(--accent) 15%, transparent);
   --blue: #7cc0ef;
   --blue-soft: rgba(124, 192, 239, 0.12);
   --shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
+}
+
+/* ───────── Section themes ─────────
+   Each page marks its root element with data-section (and trip pages with data-journey-tag);
+   :has() lets that restyle the whole document, header and footer included, with no script.
+   --texture is the page background pattern, drawn in --grid. */
+:root {
+  --texture: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  --texture-size: 24px 24px;
+}
+/* Projects — blueprint: fine grid with heavier major lines */
+:root:has([data-section="projects"]) {
+  --sec-accent: #1c6dd0;
+  --sec-bg: #edf2f8;
+  --sec-bg-alt: #e2e9f3;
+  --sec-surface: #f8fafd;
+  --sec-line: #c9d5e6;
+  --sec-grid: rgba(28, 109, 208, 0.08);
+  --sec-accent-dark: #6cb4ff;
+  --sec-bg-dark: #0b2545;
+  --sec-bg-alt-dark: #081d38;
+  --sec-surface-dark: #10325c;
+  --sec-line-dark: #24507f;
+  --sec-grid-dark: rgba(108, 180, 255, 0.09);
+  --texture: linear-gradient(var(--grid) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--grid) 1.5px, transparent 1.5px),
+    linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  --texture-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+}
+/* Journeys — travel map: dot grid */
+:root:has([data-section="journeys"]) {
+  --sec-accent: #0b7285;
+  --sec-bg: #f1efe7;
+  --sec-bg-alt: #e6e9e1;
+  --sec-surface: #fbfaf6;
+  --sec-line: #d3d6c8;
+  --sec-grid: rgba(11, 114, 133, 0.16);
+  --sec-accent-dark: #3bc9db;
+  --sec-bg-dark: #0c2a30;
+  --sec-bg-alt-dark: #092126;
+  --sec-surface-dark: #113840;
+  --sec-line-dark: #24525a;
+  --sec-grid-dark: rgba(59, 201, 219, 0.14);
+  --texture: radial-gradient(var(--grid) 1.2px, transparent 1.6px);
+  --texture-size: 18px 18px;
+}
+/* Interests — warm, relaxed: diagonal lines */
+:root:has([data-section="interests"]) {
+  --sec-accent: #c2255c;
+  --sec-bg: #f7efee;
+  --sec-bg-alt: #f0e3e3;
+  --sec-surface: #fdf9f8;
+  --sec-line: #e3cfd0;
+  --sec-grid: rgba(194, 37, 92, 0.07);
+  --sec-accent-dark: #f783ac;
+  --sec-bg-dark: #2a1420;
+  --sec-bg-alt-dark: #22101a;
+  --sec-surface-dark: #3a1c2c;
+  --sec-line-dark: #5a3044;
+  --sec-grid-dark: rgba(247, 131, 172, 0.08);
+  --texture: repeating-linear-gradient(45deg, var(--grid) 0 1px, transparent 1px 14px);
+  --texture-size: auto;
+}
+/* Videos — screening room: cool grey with scan lines */
+:root:has([data-section="videos"]) {
+  --sec-accent: #e03131;
+  --sec-bg: #eceef1;
+  --sec-bg-alt: #e2e5ea;
+  --sec-surface: #f8f9fb;
+  --sec-line: #cfd4dc;
+  --sec-grid: rgba(27, 37, 51, 0.05);
+  --sec-accent-dark: #ff6b6b;
+  --sec-bg-dark: #121418;
+  --sec-bg-alt-dark: #0d0f12;
+  --sec-surface-dark: #1c1f25;
+  --sec-line-dark: #2e333c;
+  --sec-grid-dark: rgba(255, 255, 255, 0.035);
+  --texture: repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 4px);
+  --texture-size: auto;
+}
+
+/* Trip pages, by journey category (after Journeys so they win) */
+/* Study — academic blue, ruled notebook */
+:root:has([data-journey-tag="study"]) {
+  --sec-accent: #1d5f8a;
+  --sec-bg: #eef2f6;
+  --sec-bg-alt: #e3e9f0;
+  --sec-surface: #f9fbfd;
+  --sec-line: #cbd6e2;
+  --sec-grid: rgba(29, 95, 138, 0.1);
+  --sec-accent-dark: #7cc0ef;
+  --sec-bg-dark: #0d2238;
+  --sec-bg-alt-dark: #0a1c2f;
+  --sec-surface-dark: #12304d;
+  --sec-line-dark: #2a4a6b;
+  --sec-grid-dark: rgba(124, 192, 239, 0.08);
+  --texture: repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 30px);
+  --texture-size: auto;
+}
+/* Work — industrial orange, section hatching */
+:root:has([data-journey-tag="work"]) {
+  --sec-accent: #d9480f;
+  --sec-bg: #f2ede5;
+  --sec-bg-alt: #ebe3d6;
+  --sec-surface: #fbf8f3;
+  --sec-line: #d8ccb9;
+  --sec-grid: rgba(217, 72, 15, 0.07);
+  --sec-accent-dark: #ff8a3d;
+  --sec-bg-dark: #221a14;
+  --sec-bg-alt-dark: #1a140f;
+  --sec-surface-dark: #30241b;
+  --sec-line-dark: #4d3a2b;
+  --sec-grid-dark: rgba(255, 138, 61, 0.07);
+  --texture: repeating-linear-gradient(-45deg, var(--grid) 0 1px, transparent 1px 10px);
+  --texture-size: auto;
+}
+/* Tour — trail green, topographic contours */
+:root:has([data-journey-tag="tour"]) {
+  --sec-accent: #2b8a3e;
+  --sec-bg: #eff3ea;
+  --sec-bg-alt: #e4eadd;
+  --sec-surface: #fafcf7;
+  --sec-line: #cfd9c5;
+  --sec-grid: rgba(43, 138, 62, 0.12);
+  --sec-accent-dark: #69db7c;
+  --sec-bg-dark: #10251a;
+  --sec-bg-alt-dark: #0c1d14;
+  --sec-surface-dark: #173424;
+  --sec-line-dark: #2b5139;
+  --sec-grid-dark: rgba(105, 219, 124, 0.09);
+  --texture: repeating-radial-gradient(circle at 18% 22%, transparent 0 26px, var(--grid) 26px 27px),
+    repeating-radial-gradient(circle at 82% 70%, transparent 0 34px, var(--grid) 34px 35px);
+  --texture-size: auto;
+}
+/* Pilgrimage — calm purple, geometric lattice */
+:root:has([data-journey-tag="pilgrimage"]) {
+  --sec-accent: #6741d9;
+  --sec-bg: #f3f0f8;
+  --sec-bg-alt: #e9e4f3;
+  --sec-surface: #fbfafd;
+  --sec-line: #d7cfe8;
+  --sec-grid: rgba(103, 65, 217, 0.08);
+  --sec-accent-dark: #b197fc;
+  --sec-bg-dark: #1b1530;
+  --sec-bg-alt-dark: #151026;
+  --sec-surface-dark: #261e42;
+  --sec-line-dark: #3f3466;
+  --sec-grid-dark: rgba(177, 151, 252, 0.08);
+  --texture: repeating-linear-gradient(45deg, var(--grid) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, var(--grid) 0 1px, transparent 1px 22px);
+  --texture-size: auto;
 }
 
 /* ───────── Base ───────── */
@@ -67,9 +219,9 @@ html {
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: var(--texture);
+  background-size: var(--texture-size);
+  transition: background-color 0.3s;
   color: var(--ink);
   font: 400 1rem/1.65 var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;

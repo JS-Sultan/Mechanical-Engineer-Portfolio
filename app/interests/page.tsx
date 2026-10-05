@@ -12,5 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default function InterestsPage() {
-  return <ComingSoon no={page.no} title={page.title} message={page.message} variant="interests" />;
+  return (
+    <div data-section="interests">
+      <ComingSoon no={page.no} title={page.title} message={page.message} variant="interests" />
+    </div>
+  );
 }
