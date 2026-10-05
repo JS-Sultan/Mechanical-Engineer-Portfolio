@@ -13,6 +13,8 @@ export const profile = {
   phone: "+92 313 4390156",
   linkedin: "https://www.linkedin.com/in/muhammad-ali1988",
   whatsapp: "https://wa.me/923134390156",
+  // Web3Forms access key (public by design). Without it the contact form falls back to opening the visitor's mail app.
+  contactFormKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "",
   maps: "https://www.google.com/maps/search/?api=1&query=Lahore%2C%20Pakistan",
   resume: `${basePath}/Muhammad-Ali-Resume.pdf`,
   portrait: {
@@ -22,7 +24,7 @@ export const profile = {
   },
   summary: [
     "Muhammad Ali is a Mechanical Engineer with a Master's in Power Engineering & Engineering Thermophysics from Xi'an Jiaotong University and more than seven years of combined experience across industrial production supervision, quality control, and engineering education.",
-    "His work spans four countries — the Netherlands, Bahrain, China, and Pakistan — where he has supervised production operations, enforced quality and safety standards, and improved process efficiency. He designs with AutoCAD, SolidWorks, and Autodesk Inventor, and has trained the next generation of technologists through hands-on, project-based teaching.",
+    "His work spans four countries (the Netherlands, Bahrain, China, and Pakistan), where he has supervised production operations, enforced quality and safety standards, and improved process efficiency. He designs with AutoCAD, SolidWorks, and Autodesk Inventor, and has trained the next generation of technologists through hands-on, project-based teaching.",
     "He is seeking a production, quality, or design engineering role in a multinational organization.",
   ],
   interests: [
@@ -65,16 +67,16 @@ export const stats = [
 
 export const expertise = {
   foundations: [
-    { title: "Thermodynamics", text: "Power engineering and engineering thermophysics at postgraduate level." },
-    { title: "Mechanical Design", text: "Part and assembly modelling in AutoCAD, SolidWorks and Inventor." },
-    { title: "Quality Systems", text: "QC systems, ISO compliance and root-cause analysis." },
-    { title: "Materials Testing", text: "Material testing and failure investigation in the field." },
+    { icon: "thermo", title: "Thermodynamics", text: "Power engineering and engineering thermophysics at postgraduate level." },
+    { icon: "design", title: "Mechanical Design", text: "Part and assembly modelling in AutoCAD, SolidWorks and Inventor." },
+    { icon: "quality", title: "Quality Systems", text: "QC systems, ISO compliance and root-cause analysis." },
+    { icon: "materials", title: "Materials Testing", text: "Material testing and failure investigation in the field." },
   ],
   applications: [
-    { title: "Production", text: "Line supervision, scheduling and workforce coordination." },
-    { title: "Process Improvement", text: "Removing waste and complaints from manufacturing flows." },
-    { title: "Health & Safety", text: "Hygiene, workplace-safety and regulatory standards." },
-    { title: "Engineering Education", text: "Lectures, design projects and technical competitions." },
+    { icon: "production", title: "Production", text: "Line supervision, scheduling and workforce coordination." },
+    { icon: "improve", title: "Process Improvement", text: "Removing waste and complaints from manufacturing flows." },
+    { icon: "safety", title: "Health & Safety", text: "Hygiene, workplace-safety and regulatory standards." },
+    { icon: "education", title: "Engineering Education", text: "Lectures, design projects and technical competitions." },
   ],
 };
 
@@ -177,7 +179,7 @@ export const skills = [
 export const nav = [
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/projects/", label: "Projects" },
+  { href: "/projects/", label: "Projects & Awards" },
   { href: "/journeys/", label: "Journeys" },
   { href: "/interests/", label: "Interests" },
   { href: "/videos/", label: "Videos" },
@@ -186,14 +188,6 @@ export const nav = [
 
 // Placeholder pages. When material is ready, replace the page's <ComingSoon /> with real content.
 export const upcoming = {
-  projects: {
-    no: "P-01",
-    title: "Projects",
-    seoTitle: "Projects",
-    description:
-      "Mechanical design, production and quality-improvement projects by Muhammad Ali — CAD models, process improvements and student design work.",
-    message: "Design work, CAD models and process-improvement case studies are being documented.",
-  },
   interests: {
     no: "P-02",
     title: "Hobbies & Interests",

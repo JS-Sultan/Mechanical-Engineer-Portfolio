@@ -32,7 +32,7 @@ export default function SiteHeader() {
       </a>
       <header id="top" className="topbar">
         <div className="wrap topbar-inner">
-          <Link href="/" className="brand" aria-label={`${profile.name} — home`} onClick={() => setOpen(false)}>
+          <Link href="/" className="brand" aria-label={`${profile.name}, home page`} onClick={() => setOpen(false)}>
             <span className="brand-mark">{profile.initials}</span>
             <span className="brand-name">{profile.name}</span>
           </Link>

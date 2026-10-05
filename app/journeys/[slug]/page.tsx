@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const j = journeys.find((x) => x.slug === slug);
   if (!j) return {};
-  const title = j.period ? `${j.country} — ${j.tag} (${j.period})` : `${j.country} — ${j.tag}`;
+  const title = j.period ? `${j.country}: ${j.tag} (${j.period})` : `${j.country}: ${j.tag}`;
   return {
     title,
     description: j.summary,

@@ -1,22 +1,35 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { profile, siteUrl } from "@/data/profile";
-import { formatDate, videoPoster, videos, videoSrc } from "@/data/videos";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
+import { formatDate, formatDuration, press, videoPoster, videos, videoSrc } from "@/data/videos";
 
 const description =
-  "Videos of Muhammad Ali, Mechanical Engineer — technical presentations on spray cooling and steam power plants at Xi'an Jiaotong University.";
+  "Videos of Muhammad Ali, Mechanical Engineer: news coverage of Pakistan's first hybrid bike from the Government College of Technology, Lahore, and technical presentations on spray cooling and steam power plants at Xi'an Jiaotong University.";
 
 export const metadata: Metadata = {
-  title: "Videos — Talks & Presentations",
+  title: "Videos: In the News & Talks",
   description,
   alternates: { canonical: "/videos/" },
-  openGraph: { title: "Videos — Talks & Presentations", description, url: "/videos/" },
+  openGraph: { title: "Videos: In the News & Talks", description, url: "/videos/" },
 };
 
 // schema.org VideoObject entries so search engines can list the clips as videos.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@graph": videos.map((v) => ({
+  "@graph": [
+    ...press.map((v) => ({
+      "@type": "VideoObject",
+      name: v.originalTitle,
+      description: v.description,
+      uploadDate: v.date,
+      duration: `PT${v.duration}S`,
+      thumbnailUrl: v.thumb,
+      embedUrl: `https://www.youtube-nocookie.com/embed/${v.id}`,
+      url: `https://www.youtube.com/watch?v=${v.id}`,
+      publisher: { "@type": "Organization", name: v.channel, url: v.channelUrl },
+    })),
+    ...videos.map((v) => ({
     "@type": "VideoObject",
     name: v.title,
     description: v.description,
@@ -26,7 +39,8 @@ const jsonLd = {
     contentUrl: `${siteUrl}/videos/${v.slug}.mp4`,
     creator: { "@type": "Person", name: profile.name, url: siteUrl },
     locationCreated: { "@type": "Place", name: v.venue },
-  })),
+    })),
+  ],
 };
 
 export default function VideosPage() {
@@ -38,10 +52,43 @@ export default function VideosPage() {
           <p className="section-no">V-00</p>
           <h1>Videos</h1>
           <p className="lede">
-            Technical talks and presentations — explaining engineering ideas to an international audience.
+            Engineering in the news, and technical talks explaining ideas to an international audience.
           </p>
         </header>
 
+        <section aria-labelledby="news-h" className="video-section">
+          <h2 id="news-h" className="col-label">
+            In the news <span className="meta">· {press.length}</span>
+          </h2>
+          <ul className="press-grid">
+            {press.map((v) => (
+              <li key={v.id} className={v.vertical ? "video-card press-card vertical" : "video-card press-card"}>
+                <div className="press-media">
+                  <YouTubeEmbed id={v.id} title={v.title} thumb={v.thumb} vertical={v.vertical} />
+                </div>
+                <div className="video-body">
+                  <p className="meta">
+                    {formatDate(v.date)} · {formatDuration(v.duration)}
+                  </p>
+                  <h3>{v.title}</h3>
+                  <p>{v.description}</p>
+                  <p className="video-tags">
+                    <a className="tl-journey" href={v.channelUrl} target="_blank" rel="noopener noreferrer">
+                      Video: {v.channel} ↗
+                    </a>
+                    <a className="tl-journey" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer">
+                      Watch on YouTube ↗
+                    </a>
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <h2 className="col-label video-section-title">
+          Talks &amp; presentations <span className="meta">· {videos.length}</span>
+        </h2>
         <ul className="video-list">
           {videos.map((v) => (
             <li key={v.slug} className="video-card">
@@ -61,7 +108,7 @@ export default function VideosPage() {
                 <p className="meta">
                   {formatDate(v.date)} · {v.venue}
                 </p>
-                <h2>{v.title}</h2>
+                <h3>{v.title}</h3>
                 <p>{v.description}</p>
                 <p className="video-tags">
                   {v.fullLength && (
@@ -81,7 +128,7 @@ export default function VideosPage() {
         </ul>
 
         <p className="empty">
-          More videos — CAD walkthroughs and engineering explainers — are on the way
+          More videos, including CAD walkthroughs and engineering explainers, are on the way
           <span className="cs-dots" aria-hidden="true" />
         </p>
       </div>

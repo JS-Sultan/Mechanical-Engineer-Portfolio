@@ -4,13 +4,13 @@ import JourneyGrid from "@/components/JourneyGrid";
 import { countriesVisited, journeys, journeyTags, mediaSummary } from "@/data/journeys";
 
 const description =
-  "Places Muhammad Ali, Mechanical Engineer, has studied, worked and travelled — from quality control in Bahrain to an M.Sc. in China and production supervision in the Netherlands.";
+  "Places Muhammad Ali, Mechanical Engineer, has studied, worked and travelled, from quality control in Bahrain to an M.Sc. in China and production supervision in the Netherlands.";
 
 export const metadata: Metadata = {
-  title: "Journeys — Study, Work & Travel",
+  title: "Journeys: Study, Work & Travel",
   description,
   alternates: { canonical: "/journeys/" },
-  openGraph: { title: "Journeys — Study, Work & Travel", description, url: "/journeys/" },
+  openGraph: { title: "Journeys: Study, Work & Travel", description, url: "/journeys/" },
 };
 
 export default function JourneysPage() {
@@ -24,7 +24,7 @@ export default function JourneysPage() {
           <p className="section-no">J-00</p>
           <h1>Journeys</h1>
           <p className="lede">
-            Studying, working and travelling across {countriesVisited.length} countries — the places behind the CV,
+            Studying, working and travelling across {countriesVisited.length} countries. These are the places behind the CV,
             from the factory floor to the lecture hall.
           </p>
         </header>

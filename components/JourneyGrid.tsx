@@ -23,7 +23,7 @@ export default function JourneyGrid({ cards, tags }: { cards: Card[]; tags: Jour
 
       {shown.length === 0 ? (
         <p className="empty">
-          No {filter.toLowerCase()} journeys published yet — more are on the way<span className="cs-dots" aria-hidden="true" />
+          No {filter.toLowerCase()} journeys published yet. More are on the way<span className="cs-dots" aria-hidden="true" />
         </p>
       ) : (
         <ul className="journey-grid">

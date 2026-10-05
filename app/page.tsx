@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { GmailIcon, LinkedInIcon, LocationIcon, WhatsAppIcon } from "@/components/ContactIcons";
+import ContactForm from "@/components/ContactForm";
+import ExpertiseIcon from "@/components/ExpertiseIcons";
 import HeroMechanism from "@/components/HeroMechanism";
 import { education, experience, expertise, internships, profile, skills, stats } from "@/data/profile";
 
@@ -42,7 +44,7 @@ export default function Home() {
                 <span className="h1-sub">{profile.title}</span>
               </h1>
               <p className="lede">
-                Building reliable production lines, tighter quality systems and well-designed mechanical parts — from
+                Building reliable production lines, tighter quality systems and well-designed mechanical parts, from
                 the shop floor in the Netherlands to the classroom in Lahore.
               </p>
               <div className="cta-row">
@@ -168,7 +170,12 @@ export default function Home() {
                   <ul className="tiles">
                     {items.map((t, i) => (
                       <li key={t.title} className="tile">
-                        <span className="tile-no">{String(i + 1).padStart(2, "0")}</span>
+                        <div className="tile-top">
+                          <span className="tile-icon">
+                            <ExpertiseIcon name={t.icon} />
+                          </span>
+                          <span className="tile-no">{String(i + 1).padStart(2, "0")}</span>
+                        </div>
                         <h4>{t.title}</h4>
                         <p>{t.text}</p>
                       </li>
@@ -255,6 +262,7 @@ export default function Home() {
             <p className="lede">
               Looking for a production, quality or design engineer for a multinational team? I'd be glad to talk.
             </p>
+            <div className="contact-grid">
             <ul className="contact-list">
               {[
                 { label: "Email", value: profile.email, href: `mailto:${profile.email}`, Icon: GmailIcon },
@@ -294,6 +302,8 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <ContactForm accessKey={profile.contactFormKey} email={profile.email} />
+            </div>
           </div>
         </section>
     </>

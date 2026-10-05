@@ -10,12 +10,12 @@ const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variabl
 const display = Space_Grotesk({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-display", display: "swap" });
 
 const description =
-  "Muhammad Ali — Mechanical Engineer with an M.Sc. in Power Engineering from Xi'an Jiaotong University and 7+ years in production supervision, quality control, ISO compliance and CAD design across the Netherlands, Bahrain, China and Pakistan.";
+  "Muhammad Ali is a Mechanical Engineer with an M.Sc. in Power Engineering from Xi'an Jiaotong University and 7+ years in production supervision, quality control, ISO compliance and CAD design across the Netherlands, Bahrain, China and Pakistan.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl + "/"),
   title: {
-    default: `${profile.name} | ${profile.title} — Production, Quality & CAD Design`,
+    default: `${profile.name} | ${profile.title} | Production, Quality & CAD Design`,
     template: `%s | ${profile.name}`,
   },
   description,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     url: "/",
-    siteName: `${profile.name} — Portfolio`,
+    siteName: `Portfolio of ${profile.name}`,
     title: `${profile.name} | ${profile.title}`,
     description,
     locale: "en_US",
