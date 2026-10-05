@@ -4,8 +4,15 @@
 import { basePath } from "./profile";
 import bahrainMedia from "./media/bahrain.json";
 import chinaMedia from "./media/china.json";
+import belgiumMedia from "./media/belgium.json";
+import franceMedia from "./media/france.json";
+import germanyMedia from "./media/germany.json";
+import netherlandsMedia from "./media/netherlands.json";
+import saudiMedia from "./media/saudi-arabia.json";
+import spainMedia from "./media/spain.json";
+import turkeyMedia from "./media/turkey.json";
 
-export type JourneyTag = "Study" | "Work" | "Tour";
+export type JourneyTag = "Study" | "Work" | "Tour" | "Pilgrimage";
 
 // `video: true` entries are an .mp4 clip with a .webp poster frame of the same name.
 type MediaFile = { file: string; w: number; h: number; video?: boolean };
@@ -17,7 +24,7 @@ export type Journey = {
   place: string;
   country: string;
   tag: JourneyTag;
-  period: string;
+  period?: string; // omitted when the date isn't known yet
   summary: string;
   story: string[];
   links?: { label: string; href: string }[];
@@ -43,6 +50,209 @@ function photos(slug: string, media: MediaFile[], captions: Record<string, strin
 }
 
 export const journeys: Journey[] = [
+  {
+    slug: "netherlands",
+    place: "Zaandam",
+    country: "Netherlands",
+    tag: "Work",
+    period: "May 2024 – Dec 2025",
+    summary: "Production Supervisor at Hilton Foods in Zaandam — and weekends among windmills and canals.",
+    story: [
+      "In 2024 I moved to the Netherlands to work as a Production Supervisor at Hilton Foods in Zaandam, running daily line operations and enforcing quality, hygiene and safety standards in a European food-production plant.",
+      "Zaandam sits on the doorstep of the Zaanse Schans windmills and a short train ride from Amsterdam, so days off were spent exploring canals, historic town squares and Dutch architecture.",
+    ],
+    links: [{ label: "Production Supervisor — Hilton Foods", href: "/#experience" }],
+    cover: `${basePath}/journeys/netherlands/netherlands-1-sm.webp`,
+    groups: [
+      {
+        title: "Zaandam & Zaanse Schans",
+        photos: photos("netherlands", netherlandsMedia, {
+          "netherlands-1": "At the Zaanse Schans windmills near Zaandam",
+          "netherlands-12": "The Inntel Hotel in Zaandam, built from stacked traditional Zaan houses",
+          "netherlands-11": "In front of Zaandam's stacked green-house architecture",
+          "netherlands-10": "Green fields and Dutch houses on a sunny day",
+        }),
+      },
+      {
+        title: "Amsterdam",
+        photos: photos("netherlands", netherlandsMedia, {
+          "netherlands-4": "In front of Amsterdam Centraal Station",
+          "netherlands-3": "On an Amsterdam canal bridge",
+          "netherlands-7": "An Amsterdam canal at dusk",
+          "netherlands-5": "At the National Monument on Dam Square",
+          "netherlands-6": "In front of a graffiti wall",
+          "netherlands-2": "Beside a bronze street sculpture",
+          "netherlands-13": "Next to an Amsterdam tram on line 2 to Nieuw Sloten",
+        }),
+      },
+      {
+        title: "Dutch towns",
+        photos: photos("netherlands", netherlandsMedia, {
+          "netherlands-8": "Below an ornate historic building",
+          "netherlands-9": "A historic town square with a clock tower",
+        }),
+      },
+    ],
+  },
+  {
+    slug: "france",
+    place: "Paris",
+    country: "France",
+    tag: "Tour",
+    period: "Summer 2024",
+    summary: "Paris in its Olympic summer — the Eiffel Tower, the Arc de Triomphe and Montmartre.",
+    story: [
+      "Paris in the summer of its 2024 Olympic Games, with the Olympic rings hanging on the Eiffel Tower and Paris 2024 banners lining the Champs-Élysées — then up to Montmartre and the Sacré-Cœur.",
+    ],
+    cover: `${basePath}/journeys/france/france-2-sm.webp`,
+    groups: [
+      {
+        title: "Paris",
+        photos: photos("france", franceMedia, {
+          "france-2": "Below the Eiffel Tower, decorated with the Olympic rings",
+          "france-3": "At the Arc de Triomphe with Paris 2024 banners",
+          "france-1": "Under the arch of the Arc de Triomphe",
+          "france-4": "The Sacré-Cœur Basilica in Montmartre",
+          "france-5": "The golden Joan of Arc statue on Place des Pyramides",
+        }),
+      },
+    ],
+  },
+  {
+    slug: "belgium",
+    place: "Brussels",
+    country: "Belgium",
+    tag: "Tour",
+    period: "Aug 2024",
+    summary: "Brussels during the Flower Carpet — the Grand-Place, the cathedral and the Atomium.",
+    story: [
+      "Brussels at its most colourful: the Grand-Place covered by the Flower Carpet, the Gothic Cathedral of St. Michael and St. Gudula, the Cinquantenaire arch, and the Atomium.",
+    ],
+    cover: `${basePath}/journeys/belgium/belgium-6-sm.webp`,
+    groups: [
+      {
+        title: "Brussels",
+        photos: photos("belgium", belgiumMedia, {
+          "belgium-6": "At the Flower Carpet on the Grand-Place",
+          "belgium-5": "On the Grand-Place",
+          "belgium-4": "A selfie on the Grand-Place",
+          "belgium-8": "In front of the Atomium",
+          "belgium-7": "The Cathedral of St. Michael and St. Gudula",
+          "belgium-3": "At the Cinquantenaire arch",
+          "belgium-2": "Beside a carved baroque pulpit inside a church",
+          "belgium-1": "By a sculpted fountain and flower beds",
+        }),
+      },
+    ],
+  },
+  {
+    slug: "spain",
+    place: "Barcelona & Costa Blanca",
+    country: "Spain",
+    tag: "Tour",
+    summary: "Gaudí's Barcelona and the Mediterranean coast of Benidorm and Alicante.",
+    story: [
+      "From Barcelona's Sagrada Família, Arc de Triomf and the hill of Montjuïc, down to the Costa Blanca: Benidorm's skyline and beaches, and the flower-pot lanes of Alicante's old Santa Cruz quarter.",
+    ],
+    cover: `${basePath}/journeys/spain/spain-2-sm.webp`,
+    groups: [
+      {
+        title: "Barcelona",
+        photos: photos("spain", spainMedia, {
+          "spain-7": "In front of the Sagrada Família",
+          "spain-8": "The Arc de Triomf",
+          "spain-11": "At the National Palace on Montjuïc",
+          "spain-10": "The four columns of Montjuïc and the National Palace",
+          "spain-13": "The view from Montjuïc over Plaça d'Espanya",
+        }),
+      },
+      {
+        title: "Benidorm & Alicante",
+        photos: photos("spain", spainMedia, {
+          "spain-2": "Benidorm's skyline across the bay",
+          "spain-1": "On a seafront lookout above Benidorm",
+          "spain-14": "By the Mediterranean with Benidorm in the distance",
+          "spain-3": "On the beach at dusk",
+          "spain-4": "The blue flower-pot lane in Alicante's Santa Cruz quarter",
+          "spain-6": "A marina at sunset",
+        }),
+      },
+      {
+        title: "Along the way",
+        photos: photos("spain", spainMedia, {
+          "spain-9": "A rooftop view over a blue-tiled church dome",
+          "spain-12": "Beside a stone church bell tower",
+          "spain-5": "Among bronze statues in a town square",
+        }),
+      },
+    ],
+  },
+  {
+    slug: "turkey",
+    place: "Istanbul",
+    country: "Turkey",
+    tag: "Tour",
+    summary: "Istanbul's historic heart — the Blue Mosque and the Hagia Sophia.",
+    story: [
+      "A trip to Istanbul's historic Sultanahmet district, between the Blue Mosque and the Hagia Sophia, whose vast domed interior and calligraphy roundels are among the great works of Byzantine and Ottoman architecture.",
+    ],
+    cover: `${basePath}/journeys/turkey/turkey-8-sm.webp`,
+    groups: [
+      {
+        title: "Istanbul",
+        photos: photos("turkey", turkeyMedia, {
+          "turkey-8": "The Hagia Sophia beyond the fountain in Sultanahmet Square",
+          "turkey-7": "In Sultanahmet Square with the Hagia Sophia behind",
+          "turkey-4": "Inside the Hagia Sophia, below the calligraphy roundels",
+          "turkey-5": "Under the great dome of the Hagia Sophia",
+          "turkey-2": "In the courtyard of the Blue Mosque",
+          "turkey-3": "In front of the Blue Mosque",
+          "turkey-6": "The Blue Mosque seen from Sultanahmet Park",
+          "turkey-1": "A rooftop view over Istanbul",
+        }),
+      },
+    ],
+  },
+  {
+    slug: "germany",
+    place: "Hamburg & Berlin",
+    country: "Germany",
+    tag: "Tour",
+    summary: "Hamburg's canals and City Hall, and Berlin's landmarks from the Cathedral to the TV Tower.",
+    story: [
+      "A trip to two of Germany's great cities: Hamburg, with its canals, the Alster lake and the grand City Hall, and Berlin, from the Berlin Cathedral on Museum Island to the TV Tower on Alexanderplatz.",
+    ],
+    cover: `${basePath}/journeys/germany/germany-11-sm.webp`,
+    groups: [
+      {
+        title: "Berlin",
+        photos: photos("germany", germanyMedia, {
+          "germany-11": "In front of the Berlin Cathedral",
+          "germany-6": "At the entrance of the Berlin Cathedral",
+          "germany-10": "St. Mary's Church and the TV Tower, Berlin",
+          "germany-12": "The Berlin TV Tower on a clear day",
+        }),
+      },
+      {
+        title: "Hamburg",
+        photos: photos("germany", germanyMedia, {
+          "germany-4": "Hamburg City Hall seen across the canal",
+          "germany-7": "By the Alster Arcades in Hamburg",
+          "germany-5": "On the lakeshore beside a houseboat",
+          "germany-1": "Above the river with hillside houses behind",
+          "germany-2": "On a riverside walking path",
+        }),
+      },
+      {
+        title: "Around town",
+        photos: photos("germany", germanyMedia, {
+          "germany-13": "Between modern high-rise towers",
+          "germany-8": "Outside a city shopping centre",
+          "germany-3": "In a green park in spring",
+        }),
+      },
+    ],
+  },
   {
     slug: "china",
     place: "Xi'an",
@@ -146,6 +356,24 @@ export const journeys: Journey[] = [
       },
     ],
   },
+  {
+    slug: "saudi-arabia",
+    place: "Makkah",
+    country: "Saudi Arabia",
+    tag: "Pilgrimage",
+    summary: "Performing Umrah in Makkah — a journey of faith.",
+    story: ["Performing Umrah in Makkah was a journey of faith, and one of the most meaningful I have made."],
+    cover: `${basePath}/journeys/saudi-arabia/umrah-saudia-arabia-2-sm.webp`,
+    groups: [
+      {
+        title: "Umrah",
+        photos: photos("saudi-arabia", saudiMedia, {
+          "umrah-saudia-arabia-1": "At the Masjid al-Haram in Makkah, with the Kaaba behind",
+          "umrah-saudia-arabia-2": "On a rocky mountainside near Makkah",
+        }),
+      },
+    ],
+  },
 ];
 
 // e.g. "16 photos · 1 video"
@@ -158,7 +386,7 @@ export function mediaSummary(j: Pick<Journey, "groups">): string {
   return parts.join(" · ");
 }
 
-export const journeyTags: JourneyTag[] = ["Study", "Work", "Tour"];
+export const journeyTags: JourneyTag[] = ["Study", "Work", "Tour", "Pilgrimage"];
 
 // Every country with photos in the travel archive; ones without a journey page yet show as "coming soon".
 export const countriesVisited = ["Bahrain", "China", "Netherlands", "Belgium", "France", "Germany", "Spain", "Turkey", "Saudi Arabia"];

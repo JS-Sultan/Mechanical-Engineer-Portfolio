@@ -100,6 +100,7 @@ export const experience: Role[] = [
     place: "Zaandam, Netherlands",
     period: "May 2024 – Dec 2025",
     tag: "Industry",
+    journey: "netherlands",
     points: [
       "Supervised daily production operations and workforce activities across the line, keeping output on schedule.",
       "Enforced quality, hygiene, and workplace-safety standards in line with company and regulatory requirements.",

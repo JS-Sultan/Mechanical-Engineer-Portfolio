@@ -1149,6 +1149,18 @@ nav {
   background: rgba(47, 158, 68, 0.14);
   color: #2b8a3e;
 }
+.tag-pilgrimage {
+  background: rgba(112, 72, 232, 0.12);
+  color: #6741d9;
+}
+:root[data-theme="dark"] .tag-pilgrimage {
+  color: #b197fc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .tag-pilgrimage {
+    color: #b197fc;
+  }
+}
 :root[data-theme="dark"] .tag-tour {
   color: #69db7c;
 }

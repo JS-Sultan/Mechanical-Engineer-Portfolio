@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const j = journeys.find((x) => x.slug === slug);
   if (!j) return {};
-  const title = `${j.country} — ${j.tag} (${j.period})`;
+  const title = j.period ? `${j.country} — ${j.tag} (${j.period})` : `${j.country} — ${j.tag}`;
   return {
     title,
     description: j.summary,
@@ -61,7 +61,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
               {j.place}, {j.country}
             </h1>
             <p className="meta">
-              {j.period} · {media}
+              {j.period ? `${j.period} · ${media}` : media}
             </p>
           </div>
           <div className="prose journey-story">

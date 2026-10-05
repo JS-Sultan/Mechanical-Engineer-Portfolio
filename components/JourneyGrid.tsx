@@ -35,7 +35,7 @@ export default function JourneyGrid({ cards, tags }: { cards: Card[]; tags: Jour
                   <span className={`tag tag-${c.tag.toLowerCase()}`}>{c.tag}</span>
                 </div>
                 <div className="jc-body">
-                  <p className="meta">{c.period}</p>
+                  {c.period && <p className="meta">{c.period}</p>}
                   <h2>
                     {c.place}, {c.country}
                   </h2>
