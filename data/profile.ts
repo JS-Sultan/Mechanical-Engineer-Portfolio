@@ -33,6 +33,7 @@ export const education = [
     school: "Xi'an Jiaotong University, China",
     years: "2019 – 2021",
     grade: "CGPA 3.63 / 4.0",
+    journey: "china",
   },
   {
     degree: "B.Sc. Mechanical Technology",
@@ -77,6 +78,7 @@ export type Role = {
   period: string;
   tag: "Industry" | "Academia";
   points: string[];
+  journey?: string; // slug of a related page under /journeys/
 };
 
 export const experience: Role[] = [
@@ -133,6 +135,7 @@ export const experience: Role[] = [
     place: "Bahrain",
     period: "Aug 2011 – Sep 2013",
     tag: "Industry",
+    journey: "bahrain",
     points: [
       "Managed QC systems and ISO compliance across packaging production.",
       "Cut customer complaints and improved process efficiency by over 80% through stronger quality-control processes.",
@@ -166,8 +169,8 @@ export const skills = [
 export const nav = [
   { href: "/#about", label: "About" },
   { href: "/#experience", label: "Experience" },
-  { href: "/#skills", label: "Skills" },
   { href: "/projects/", label: "Projects" },
+  { href: "/journeys/", label: "Journeys" },
   { href: "/interests/", label: "Interests" },
   { href: "/videos/", label: "Videos" },
   { href: "/#contact", label: "Contact" },
@@ -189,12 +192,5 @@ export const upcoming = {
     seoTitle: "Hobbies & Interests",
     description: "Hobbies and interests of Muhammad Ali, Mechanical Engineer, beyond the shop floor and the classroom.",
     message: "A look at life beyond the shop floor and the classroom is on its way.",
-  },
-  videos: {
-    no: "P-03",
-    title: "Videos",
-    seoTitle: "Videos",
-    description: "Videos by Muhammad Ali — engineering explainers, CAD walkthroughs and talks.",
-    message: "Engineering explainers, CAD walkthroughs and talks are being recorded.",
   },
 };

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { education, experience, expertise, internships, profile, skills, stats } from "@/data/profile";
 
 function SectionHead({ no, title, kicker }: { no: string; title: string; kicker?: string }) {
@@ -138,6 +139,11 @@ export default function Home() {
                           {e.years}
                           {e.grade && ` · ${e.grade}`}
                         </p>
+                        {e.journey && (
+                          <Link className="tl-journey" href={`/journeys/${e.journey}/`}>
+                            See photos from my studies →
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ol>
@@ -196,6 +202,11 @@ export default function Home() {
                         <li key={p}>{p}</li>
                       ))}
                     </ul>
+                    {r.journey && (
+                      <Link className="tl-journey" href={`/journeys/${r.journey}/`}>
+                        See photos from {r.place} →
+                      </Link>
+                    )}
                   </article>
                 </li>
               ))}

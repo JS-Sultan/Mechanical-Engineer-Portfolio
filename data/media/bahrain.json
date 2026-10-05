@@ -1,0 +1,77 @@
+[
+  {
+    "file": "bahrain-group-1",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-group-2",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-group-3",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-outdoor-1",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-outdoor-2",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-outdoor-3",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-outdoor-4",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-outdoor-5",
+    "w": 1200,
+    "h": 1600
+  },
+  {
+    "file": "bahrain-outdoor-6",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-work-1",
+    "w": 1200,
+    "h": 1600
+  },
+  {
+    "file": "bahrain-work-2",
+    "w": 1200,
+    "h": 1600
+  },
+  {
+    "file": "bahrain-work-3",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-work-4",
+    "w": 1200,
+    "h": 1600
+  },
+  {
+    "file": "bahrain-work-5",
+    "w": 1600,
+    "h": 1200
+  },
+  {
+    "file": "bahrain-work-6",
+    "w": 1600,
+    "h": 1200
+  }
+]
