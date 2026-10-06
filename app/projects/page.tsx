@@ -5,6 +5,7 @@ import ProjectClip from "@/components/ProjectClip";
 import YouTubeEmbed from "@/components/YouTubeEmbed";
 import { siteUrl, profile } from "@/data/profile";
 import { awardPhotos, awards, featured, projects } from "@/data/projects";
+import { thesis } from "@/data/thesis";
 import { press } from "@/data/videos";
 
 const description =
@@ -40,7 +41,7 @@ export default function ProjectsPage() {
           <h1>Projects &amp; Awards</h1>
           <p className="lede">
             Engineering projects I have supervised, from an award-winning hybrid motorcycle to working models of
-            classic mechanisms, and the recognition earned along the way.
+            classic mechanisms, my M.Sc. research, and the recognition earned along the way.
           </p>
         </header>
 
@@ -122,6 +123,34 @@ export default function ProjectsPage() {
             </figure>
           </div>
         </article>
+
+        {/* Research */}
+        <h2 className="col-label">Research</h2>
+        <Link href="/projects/thesis/" className="research-card">
+          <div>
+            <p className="meta">
+              M.Sc. thesis · {thesis.university} · {thesis.date}
+            </p>
+            <h3>{thesis.title}</h3>
+            <p>
+              A BIM-based approach to designing a net-zero energy office building in Islamabad: passive design, efficient
+              systems and on-site solar, tested with whole-building energy simulation.
+            </p>
+            <p className="research-stats">
+              <span>
+                <strong>−53%</strong> energy
+              </span>
+              <span>
+                <strong>−53%</strong> CO₂
+              </span>
+              <span>
+                <strong>−55%</strong> cooling
+              </span>
+            </p>
+            <span className="jc-more">Read the case study →</span>
+          </div>
+          <img src={thesis.figures[1].thumb} alt="" width={thesis.figures[1].w} height={thesis.figures[1].h} loading="lazy" />
+        </Link>
 
         {/* Other supervised projects */}
         <section aria-labelledby="more-h" className="more-projects">

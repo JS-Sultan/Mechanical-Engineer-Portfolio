@@ -7,6 +7,7 @@ export const dynamic = "force-static";
 const pages = [
   { path: "/", priority: 1 },
   { path: "/projects/", priority: 0.8 },
+  { path: "/projects/thesis/", priority: 0.8 },
   { path: "/journeys/", priority: 0.7 },
   ...journeys.map((j) => ({ path: `/journeys/${j.slug}/`, priority: 0.6 })),
   { path: "/interests/", priority: 0.6 },

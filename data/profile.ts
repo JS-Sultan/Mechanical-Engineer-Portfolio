@@ -43,6 +43,7 @@ export const education = [
     years: "2019 – 2021",
     grade: "CGPA 3.63 / 4.0",
     journey: "china",
+    thesis: "/projects/thesis/",
   },
   {
     degree: "B.Sc. Mechanical Technology",

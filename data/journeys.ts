@@ -266,6 +266,7 @@ export const journeys: Journey[] = [
     ],
     links: [
       { label: "M.Sc. Power Engineering & Engineering Thermophysics, Xi'an Jiaotong University", href: "/#about" },
+      { label: "My M.Sc. thesis: Design and Optimization of a Net-Zero Energy Building", href: "/projects/thesis/" },
       { label: "Watch my presentations from Xi'an Jiaotong University", href: "/videos/" },
     ],
     cover: `${basePath}/journeys/china/xian-university-china-sm.webp`,

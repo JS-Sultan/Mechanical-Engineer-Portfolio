@@ -1,0 +1,27 @@
+[
+  {
+    "file": "building-model",
+    "w": 623,
+    "h": 346
+  },
+  {
+    "file": "sun-path-summer",
+    "w": 595,
+    "h": 383
+  },
+  {
+    "file": "sun-path-winter",
+    "w": 634,
+    "h": 383
+  },
+  {
+    "file": "wind-rose",
+    "w": 341,
+    "h": 373
+  },
+  {
+    "file": "monthly-design-temperatures",
+    "w": 355,
+    "h": 230
+  }
+]

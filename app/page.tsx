@@ -140,10 +140,19 @@ export default function Home() {
                           {e.years}
                           {e.grade && ` · ${e.grade}`}
                         </p>
-                        {e.journey && (
-                          <Link className="tl-journey" href={`/journeys/${e.journey}/`}>
-                            See photos from my studies →
-                          </Link>
+                        {(e.thesis || e.journey) && (
+                          <p className="edu-links">
+                            {e.thesis && (
+                              <Link className="tl-journey" href={e.thesis}>
+                                Read my thesis →
+                              </Link>
+                            )}
+                            {e.journey && (
+                              <Link className="tl-journey" href={`/journeys/${e.journey}/`}>
+                                Photos from my studies →
+                              </Link>
+                            )}
+                          </p>
                         )}
                       </li>
                     ))}

@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { nav, profile } from "@/data/profile";
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+
+  // Close the mobile menu once a navigation lands (page transitions delay the route change).
+  useEffect(() => setOpen(false), [pathname]);
 
   const isActive = (href: string) => !href.startsWith("/#") && pathname.startsWith(href.replace(/\/$/, ""));
 
